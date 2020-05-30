@@ -5,10 +5,13 @@ describe("saving to database", function () {
   //   it("adds two number together", () => {
   //     assert(2 + 3 === 5);
   //   });
-  it("Saves record to database", () => {
+  it("Saves record to database", (done) => {
     let char = new MarioChar({
       name: "Mario",
     });
-    char.save();
+    char.save().then(() => {
+      assert(char.isNew === false);
+      done();
+    });
   });
 });
